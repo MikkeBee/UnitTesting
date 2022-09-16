@@ -1,0 +1,62 @@
+[
+  {
+    "ID": 1,
+    "productname": "Tako delux",
+    "type": "phone",
+    "price": 300,
+    "productionYear": 2011,
+    "accessories": ["coffee cup", "bags", "filter set"],
+    "extras": {
+      "model": "chrome",
+      "comments": "high capacity",
+      "energyclass": "A+"
+    }
+  },
+  {
+    "ID": 2,
+    "productname": "MaxEffect 2000",
+    "type": "stereo",
+    "price": 36,
+    "productionYear": 2017,
+    "accessories": ["coffee cup", "bags", "cleaning brush"],
+    "extras": {
+      "model": "XXL",
+      "comments": "high capacity",
+      "energyclass": "A++"
+    }
+  },
+  {
+    "ID": 3,
+    "productname": "Beast II",
+    "type": "toaster",
+    "price": 123,
+    "productionYear": 2015,
+    "accessories": ["delux brush set", "coffee cup", "filter set"],
+    "extras": {
+      "model": "gold",
+      "comments": "old model",
+      "energyclass": "A"
+    }
+  },
+  {
+    "ID": 4,
+    "productname": "MaxEffect 2000",
+    "type": "tv",
+    "price": 36,
+    "productionYear": 2018,
+    "accessories": ["coffee cup", "filter set", "cleaning brush"],
+    "extras": {
+      "model": "VIP",
+      "comments": "no comments",
+      "energyclass": "A+"
+    }
+  },
+  {
+    "ID": 5,
+    "productname": "Beast II",
+    "type": "monitor",
+    "price": 15,
+    "productionYear": 2012,
+    "accessories": ["bags", "delux brush set", "cleaning brush"]
+  }
+]
