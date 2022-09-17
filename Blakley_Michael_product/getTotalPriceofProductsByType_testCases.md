@@ -2,7 +2,7 @@
 
 ### get_total_price_of_products_by_types(searchValue)
 
-Returns the total price of all cars that have the same type than the given searchValue. If no product with the given searchValue is found throws an exeption `'nothing found with given'`. If a parameter searchValue is missing, an exeption `'missing parameter'` is thrown
+Returns the total price of all products that have the same type than the given searchValue. If no product with the given searchValue is found, it throws an exception `'nothing found matching the search parameter'`. If the searchValue is missing, an exception `'missing parameter'` is thrown.
 
 ## Test 1: No searchValue
 
@@ -19,17 +19,28 @@ returns `'missing parameter'`
 ```js
 const register = new ProductRegister([]);
 
-register.hasExtras(x);
+register.getTotalPriceByType();
 ```
 
-returns `'Nothing found with given parameter'`
+returns `'Nothing found matching the search parameter'`
 
-## Test 3: Product has extras
+## Test 3: Price of one product
 
 ```js
 const register = new ProductRegister([]);
 
-register.hasExtras(1);
+register.getTotalPriceByType("phone");
 ```
 
-returns true
+returns 300
+
+## Test 4: Price of more than one product
+
+```js
+const register = new ProductRegister([]);
+
+register.getTotalPriceByType("phone", "stereo");
+```
+
+returns 336
+\*\*need to check how to get multiple types and add the total

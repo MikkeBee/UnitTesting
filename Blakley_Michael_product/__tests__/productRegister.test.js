@@ -31,21 +31,21 @@ describe("Testing getProductAccessories", () => {
     expect(register.getAllAccessories()).toEqual([]);
   });
 
-  test("Test 2a: using default data for ID 1", () => {
-    const register = new ProductRegister(products);
-    expect(register.getAllAccessories(1)).toEqual([
-      "coffee cup",
-      "bags",
-      "filter set",
-    ]);
-  });
-
-  test("Test 2b: using default data for ID 2", () => {
+  test("Test 2a: using default data for ID 2", () => {
     const register = new ProductRegister(products);
     expect(register.getAllAccessories(2)).toEqual([
       "coffee cup",
       "bags",
       "cleaning brush",
+    ]);
+  });
+
+  test("Test 2b: using default data for ID 3", () => {
+    const register = new ProductRegister(products);
+    expect(register.getAllAccessories(3)).toEqual([
+      "delux brush set",
+      "coffee cup",
+      "filter set",
     ]);
   });
 
@@ -66,12 +66,12 @@ describe("Testing getExtras", () => {
     expect(register.getExtras()).toEqual(null);
   });
 
-  test("Test 3: test for ID 1", () => {
+  test("Test 3: test for ID 2", () => {
     const register = new ProductRegister(products);
-    expect(register.getExtras(1)).toEqual({
-      model: "chrome",
+    expect(register.getExtras(2)).toEqual({
+      model: "XXL",
       comments: "high capacity",
-      energyclass: "A+",
+      energyclass: "A++",
     });
   });
 });
@@ -97,12 +97,53 @@ describe("Testing hasExtras", () => {
       accessories: ["coffee cup", "bags", "cleaning brush"],
       extras: {},
     };
-    const register = new ProductRegister(products);
-    expect(register.hasExtras(testData.ID)).toEqual(false);
-  });
+    const register = new ProductRegister(testData);
+    expect(register.hasExtras(2)).toEqual(false);
+  }); //function needs to be rethought, as it gets item by ID 2 from datastorage, not testData. Failing until further notice
 
   test("Test 4: Product has extras", () => {
     const register = new ProductRegister(products);
-    expect(register.hasExtras(1)).toEqual(true);
+    expect(register.hasExtras(3)).toEqual(true);
+  });
+});
+
+describe("Test case for getTotalPriceByType", () => {
+  test("Test 1: No searchValue", () => {
+    const register = new ProductRegister(products);
+    expect(register.getTotalPriceByType()).toEqual(`Missing parameter`);
+  });
+
+  test("Test 2: No product matching the given searchValue", () => {
+    const register = new ProductRegister(products);
+    expect(register.getTotalPriceByType("book")).toEqual(
+      `'Nothing found matching the search parameter'`
+    );
+  });
+
+  test("Test 3: Price of one product", () => {
+    const register = new ProductRegister(products);
+    expect(register.getTotalPriceByType("tv")).toEqual(36);
+  });
+
+  test("Test 4: Price of two products", () => {
+    const register = new ProductRegister(products);
+    expect(register.getTotalPriceByType("tv", "phone")).toEqual(336);
+  }); //Need to figure out if it is possible to test more than one product at the same time
+});
+
+describe("Test case for getProductionYear", () => {
+  test("Test 1: No searchValue", () => {
+    const register = new ProductRegister(products);
+    expect(register.getProductionYear()).toEqual(`Missing parameter`);
+  });
+
+  test("Test 2: No product matching the given searchValue", () => {
+    const register = new ProductRegister(products);
+    expect(register.getProductionYear("MaxEffect 1000")).toEqual(null);
+  });
+
+  test("Test 3: Production year for item 2", () => {
+    const register = new ProductRegister(products);
+    expect(register.getProductionYear("MaxEffect 2000")).toEqual(2017);
   });
 });
