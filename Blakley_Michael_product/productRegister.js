@@ -40,16 +40,20 @@ module.exports = class ProductRegister {
     } else {
       return true;
     }
-  } //Needs reworking as it does not allow use of testData
+  }
 
   getTotalPriceByType(type) {
-    const productType = this.productData.find((item) => item.type === type);
-    if (type === undefined) {
-      return `Missing parameter`;
-    } else if (!productType) {
-      return `'Nothing found matching the search parameter'`;
+    if (!type) throw new Error("Missing parameter");
+    const productTypes = this.productData.filter((item) => item.type === type);
+    if (productTypes.length === 0) {
+      throw new Error("Nothing found matching the search parameter");
     } else {
-      return productType.price;
+      const total = productTypes.reduce(
+        (previousValue, currentValue) => previousValue + currentValue.price,
+        0
+      );
+
+      return total;
     }
   }
 
@@ -58,7 +62,7 @@ module.exports = class ProductRegister {
       (item) => item.productname === productName
     );
     if (!productName) {
-      return `Missing parameter`;
+      throw new Error(`Missing parameter`);
     } else if (!itemName) {
       return null;
     } else {

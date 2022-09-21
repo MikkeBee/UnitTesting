@@ -39,8 +39,27 @@ returns 300
 ```js
 const register = new ProductRegister([]);
 
-register.getTotalPriceByType("phone", "stereo");
+register.getTotalPriceByType("phone");
 ```
 
-returns 336
+```json
+[
+  {
+    "ID": 1,
+    "productname": "Tako delux",
+    "type": "phone",
+    "price": 300,
+    "productionYear": 2011
+  },
+  {
+    "ID": 6,
+    "productname": "Tako",
+    "type": "phone",
+    "price": 600,
+    "productionYear": 2012
+  }
+]
+```
+
+returns 900
 \*\*need to check how to get multiple types and add the total

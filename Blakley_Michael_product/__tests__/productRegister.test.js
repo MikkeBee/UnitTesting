@@ -88,18 +88,20 @@ describe("Testing hasExtras", () => {
   });
 
   test("Test 3: Product has an empty extras object", () => {
-    const testData = {
-      ID: 2,
-      productname: "MaxEffect 2000",
-      type: "stereo",
-      price: 36,
-      productionYear: 2017,
-      accessories: ["coffee cup", "bags", "cleaning brush"],
-      extras: {},
-    };
+    const testData = [
+      {
+        ID: 6,
+        productname: "MaxEffect 2000",
+        type: "stereo",
+        price: 36,
+        productionYear: 2017,
+        accessories: ["coffee cup", "bags", "cleaning brush"],
+        extras: {},
+      },
+    ];
     const register = new ProductRegister(testData);
-    expect(register.hasExtras(2)).toEqual(false);
-  }); //function needs to be rethought, as it gets item by ID 2 from datastorage, not testData. Failing until further notice
+    expect(register.hasExtras(6)).toEqual(false);
+  });
 
   test("Test 4: Product has extras", () => {
     const register = new ProductRegister(products);
@@ -110,13 +112,13 @@ describe("Testing hasExtras", () => {
 describe("Test case for getTotalPriceByType", () => {
   test("Test 1: No searchValue", () => {
     const register = new ProductRegister(products);
-    expect(register.getTotalPriceByType()).toEqual(`Missing parameter`);
+    expect(() => register.getTotalPriceByType()).toThrow("Missing parameter");
   });
 
   test("Test 2: No product matching the given searchValue", () => {
     const register = new ProductRegister(products);
-    expect(register.getTotalPriceByType("book")).toEqual(
-      `'Nothing found matching the search parameter'`
+    expect(() => register.getTotalPriceByType("book")).toThrow(
+      "Nothing found matching the search parameter"
     );
   });
 
@@ -126,15 +128,31 @@ describe("Test case for getTotalPriceByType", () => {
   });
 
   test("Test 4: Price of two products", () => {
-    const register = new ProductRegister(products);
-    expect(register.getTotalPriceByType("tv", "phone")).toEqual(336);
-  }); //Need to figure out if it is possible to test more than one product at the same time
+    const testData = [
+      {
+        ID: 1,
+        productname: "Tako delux",
+        type: "phone",
+        price: 300,
+        productionYear: 2011,
+      },
+      {
+        ID: 6,
+        productname: "Tako",
+        type: "phone",
+        price: 600,
+        productionYear: 2012,
+      },
+    ];
+    const register = new ProductRegister(testData);
+    expect(register.getTotalPriceByType("phone")).toEqual(900);
+  });
 });
 
 describe("Test case for getProductionYear", () => {
   test("Test 1: No searchValue", () => {
     const register = new ProductRegister(products);
-    expect(register.getProductionYear()).toEqual(`Missing parameter`);
+    expect(() => register.getProductionYear()).toThrow(`Missing parameter`);
   });
 
   test("Test 2: No product matching the given searchValue", () => {
