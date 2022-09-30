@@ -1,0 +1,18 @@
+[
+  {
+    "model": "Bored T-Model",
+    "license": "ABC-1"
+  },
+  {
+    "model": "Nova",
+    "license": "XYZ-123"
+  },
+  {
+    "model": "Bored T-Model",
+    "license": "GTF-10"
+  },
+  {
+    "model": "GTX",
+    "license": "B-1"
+  }
+]

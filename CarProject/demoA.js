@@ -1,7 +1,8 @@
 "use strict";
 
-const carStorageNoFileRead = require("./carStorageNoFileRead");
-const search = require("./carStorageNoFileRead");
+// const carStorageNoFileRead = require("./carStorageNoFileRead");
+// const search = require("./carStorageNoFileRead");
+const search = require("./carStorageFilePromises");
 
 console.log(search());
 console.log("one");
